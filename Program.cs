@@ -1,19 +1,8 @@
 using DotNet_Weather;
-using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
 
 // Define the summaries for weather conditions, expanded for more variety.
 var summaries = new[]
@@ -72,7 +61,15 @@ app.MapGet("/weather", async (HttpContext context) => {
             ))
             .ToArray();
         logger.LogInformation("Responding with {StatusCode} status code and {Count} weather forecasts.", statusCode, forecast.Length);
-        await context.Response.WriteAsJsonAsync(forecast);
+
+        if (statusCode == StatusCodes.Status204NoContent)
+        {
+            await context.Request.Body.FlushAsync();
+        }
+        else
+        {
+            await context.Response.WriteAsJsonAsync(forecast);
+        }
     }
     else
     {
