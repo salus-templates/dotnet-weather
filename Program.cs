@@ -22,7 +22,9 @@ var summaries = new[]
     "Partly Cloudy", "Cloudy", "Rainy", "Stormy", "Foggy", "Snowy", "Windy", "Clear", "Overcast", "Drizzly"
 };
 
-// Define the handler for the /weatherendpoint.
+app.MapGet("/health", () => "Healthy");
+
+// Define the handler for the /weather endpoint.
 app.MapGet("/weather", async (HttpContext context) => {
     var logger = app.Logger;
         
