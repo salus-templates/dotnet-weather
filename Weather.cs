@@ -7,7 +7,7 @@ public static class Weather
     {
         int[] statusCodes2xx = { StatusCodes.Status200OK, StatusCodes.Status201Created, StatusCodes.Status202Accepted, StatusCodes.Status204NoContent };
         int[] statusCodes4xx = { StatusCodes.Status400BadRequest, StatusCodes.Status401Unauthorized, StatusCodes.Status404NotFound, StatusCodes.Status403Forbidden, StatusCodes.Status405MethodNotAllowed };
-        int[] statusCodes5xx = { StatusCodes.Status500InternalServerError, StatusCodes.Status501NotImplemented, StatusCodes.Status502BadGateway, StatusCodes.Status503ServiceUnavailable, StatusCodes.Status504GatewayTimeout };
+        int[] statusCodes5xx = { StatusCodes.Status500InternalServerError, StatusCodes.Status501NotImplemented };
 
         // Randomly decide the type of response: 2xx, 4xx, or 5xx
         // Weights: 70% 2xx, 15% 4xx, 15% 5xx
