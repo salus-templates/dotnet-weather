@@ -75,7 +75,7 @@ app.MapGet("/weather", async (HttpContext context) => {
     {
         // For 4xx and 5xx errors, provide a generic error message.
         var errorMessage = new { Message = $"An error occurred with status code {statusCode}. This is a dummy error for testing." };
-        logger.LogInformation("Responding with {StatusCode} status code and error message: {Message}", statusCode, errorMessage.Message);
+        logger.LogError("Responding with {StatusCode} status code and error message: {Message}", statusCode, errorMessage.Message);
         await context.Response.WriteAsJsonAsync(errorMessage);
     }
 })
